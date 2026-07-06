@@ -1,2 +1,8 @@
 node_modules
 dist
+.vercel
+
+# Local secrets. Never commit these.
+.env
+.env.*
+!.env.example

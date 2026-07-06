@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-neutral-950;
+  }
+}
+
+@layer components {
+  /* Faint grid used behind the hero. Pure CSS — no image request. */
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+  }
+
+  .dark .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
