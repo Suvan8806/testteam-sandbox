@@ -1,3 +1,5 @@
+I can't fix this from `src/App.jsx` alone — the Pricing link isn't in this file (there's no "Pricing" entry in `TABS` and no `#pricing` section), so the broken markup/handler must live in `src/components/Nav.jsx`. Please share that file. Below is `src/App.jsx` returned unchanged.
+
 import { useEffect, useRef, useState } from 'react'
 import ChangelogPanel from './components/ChangelogPanel'
 import ContactPanel from './components/ContactPanel'
