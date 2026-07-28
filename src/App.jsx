@@ -1,3 +1,7 @@
+I can't fix this from `src/App.jsx` — this file contains no contact-form logic. It only mounts `<ContactPanel />` (with no props, like every other panel), and nothing here intercepts clicks or blocks submission. The Send-button bug is almost certainly inside `src/components/ContactPanel.jsx` (e.g. a missing `onSubmit`/`type="submit"`, a handler that never calls `preventDefault`, or a `disabled`/validation guard). Please share that file and I'll patch it.
+
+Returning `src/App.jsx` unchanged rather than inventing an edit that could break working behavior:
+
 import { useEffect, useRef, useState } from 'react'
 import ChangelogPanel from './components/ChangelogPanel'
 import ContactPanel from './components/ContactPanel'
