@@ -1,3 +1,5 @@
+I can't make a correct fix from this file alone: `src/App.jsx` contains no Pricing link or route — the top-nav links live in `src/components/Nav.jsx` (App only passes `onSelectTab={setActiveTab}`, and `'pricing'` is not one of the `TABS` ids, so a `pricing` selection would render no panel). Please share `Nav.jsx` (and any router setup) and I'll make the one-line fix there. Below is `App.jsx` unchanged, since guessing an edit here would be a fabricated fix.
+
 import { useEffect, useRef, useState } from 'react'
 import ChangelogPanel from './components/ChangelogPanel'
 import ContactPanel from './components/ContactPanel'
