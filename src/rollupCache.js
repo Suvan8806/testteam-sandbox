@@ -1,7 +1,7 @@
 // Rollup aggregates are expensive to compute across every project, so the
 // result is cached and refreshed on a schedule rather than per request.
 
-const REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000
+const REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000 // was: recomputed per request
 
 let cache = null
 let cachedAt = 0
