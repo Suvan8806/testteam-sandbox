@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import ChangelogPanel from './components/ChangelogPanel'
+import ContactPanel from './components/ContactPanel'
 import CustomersPanel from './components/CustomersPanel'
 import ExportPanel from './components/ExportPanel'
 import FeaturesPanel from './components/FeaturesPanel'
@@ -19,6 +20,7 @@ const TABS = [
   { id: 'features', label: 'Features' },
   { id: 'customers', label: 'Customers' },
   { id: 'changelog', label: 'Changelog' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 const FAQS = [
@@ -161,6 +163,12 @@ export default function App() {
               {activeTab === 'changelog' && (
                 <div role="tabpanel" id="panel-changelog" aria-labelledby="tab-changelog" tabIndex={0}>
                   <ChangelogPanel />
+                </div>
+              )}
+
+              {activeTab === 'contact' && (
+                <div role="tabpanel" id="panel-contact" aria-labelledby="tab-contact" tabIndex={0}>
+                  <ContactPanel />
                 </div>
               )}
             </div>
