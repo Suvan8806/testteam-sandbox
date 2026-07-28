@@ -6,7 +6,7 @@ export const NAV_LINKS = [
   { label: 'Features', href: '#explore', tab: 'features' },
   { label: 'Customers', href: '#explore', tab: 'customers' },
   { label: 'Changelog', href: '#explore', tab: 'changelog' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '#cta' },
 ]
 
 export const STRIP_STATS = [
