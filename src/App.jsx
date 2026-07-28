@@ -216,6 +216,9 @@ export default function App() {
           </div>
         </section>
 
+        {/* Pricing anchor — the nav's Pricing link targets #pricing */}
+        <div id="pricing" aria-hidden="true" className="scroll-mt-32 sm:scroll-mt-24" />
+
         {/* CTA */}
         <section id="cta" className="scroll-mt-32 py-20 text-center sm:scroll-mt-24 sm:py-24">
           <div className="mx-auto max-w-2xl px-6">
