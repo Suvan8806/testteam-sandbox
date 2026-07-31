@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import { readSession, signOut } from './auth'
 import ChangelogPanel from './components/ChangelogPanel'
 import ContactPanel from './components/ContactPanel'
 import CustomersPanel from './components/CustomersPanel'
+import DashboardPage from './components/DashboardPage'
 import ExportPanel from './components/ExportPanel'
 import FeaturesPanel from './components/FeaturesPanel'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
+import LoginPage from './components/LoginPage'
 import LogoWall from './components/LogoWall'
 import Nav from './components/Nav'
 import ProductPanel from './components/ProductPanel'
@@ -14,6 +17,7 @@ import { BTN_GHOST, BTN_PRIMARY, SectionHeading } from './components/ui'
 import { STRIP_STATS } from './data'
 import { downloadCsv } from './exportCsv'
 import { listProjects } from './projects'
+import { ROUTES, navigate, useRoute } from './routes'
 
 const TABS = [
   { id: 'product', label: 'Product' },
@@ -48,7 +52,32 @@ function useTheme() {
 export default function App() {
   const [activeTab, setActiveTab] = useState('product')
   const [dark, toggleTheme] = useTheme()
+  const [session, setSession] = useState(readSession)
+  const route = useRoute()
   const tabRefs = useRef({})
+
+  // A hash change is not a page load, so the browser keeps the scroll offset
+  // from the previous route. Reset it, or the dashboard opens halfway down.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [route])
+
+  // The dashboard is only reachable with a session. Correcting the hash here
+  // rather than during render keeps the redirect out of the render pass.
+  useEffect(() => {
+    if (route === ROUTES.dashboard && !session) navigate(ROUTES.login)
+  }, [route, session])
+
+  function handleSignedIn(next) {
+    setSession(next)
+    navigate(ROUTES.dashboard)
+  }
+
+  function handleSignOut() {
+    signOut()
+    setSession(null)
+    navigate(ROUTES.login)
+  }
 
   // Wire the Customers tab export button to the project export. The button
   // lives inside the Customers panel and keeps a stable id.
@@ -71,6 +100,31 @@ export default function App() {
     event.preventDefault()
     setActiveTab(next.id)
     tabRefs.current[next.id]?.focus()
+  }
+
+  // Routing. Every hook above runs on every route, so these returns cannot
+  // change the hook order between renders.
+  //
+  // A signed-out visitor at `#/dashboard` gets the sign-in card while the
+  // guard effect corrects the hash. There is deliberately no branch here that
+  // renders nothing: a route that resolves to a blank page is indistinguishable
+  // from a crash to whoever is looking at it.
+  if (route === ROUTES.login) {
+    return <LoginPage onSignedIn={handleSignedIn} dark={dark} onToggleTheme={toggleTheme} />
+  }
+
+  if (route === ROUTES.dashboard) {
+    if (!session) {
+      return <LoginPage onSignedIn={handleSignedIn} dark={dark} onToggleTheme={toggleTheme} />
+    }
+    return (
+      <DashboardPage
+        session={session}
+        onSignOut={handleSignOut}
+        dark={dark}
+        onToggleTheme={toggleTheme}
+      />
+    )
   }
 
   return (

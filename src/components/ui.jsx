@@ -16,6 +16,57 @@ export const BTN_QUIET =
 export const PANEL =
   'rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900'
 
+// The wordmark, for surfaces that are not the marketing Nav — the sign-in card
+// and the signed-in header. Nav keeps its own copy so the marketing shell has
+// no dependency on the application pages.
+export function Wordmark({ className = '' }) {
+  return (
+    <span className={`inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 ${className}`}>
+      <svg viewBox="0 0 32 32" className="h-[22px] w-[22px]" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" />
+        <path d="M9 16h5v7H9zM18 9h5v14h-5z" fill="#fff" />
+      </svg>
+      <span className="text-[17px] font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+        TestTeam
+      </span>
+    </span>
+  )
+}
+
+export function ThemeToggle({ dark, onToggle }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label="Toggle light and dark theme"
+      className="inline-flex h-[34px] w-[34px] flex-none items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+    >
+      {dark ? (
+        <svg viewBox="0 0 24 24" className="h-[17px] w-[17px]" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+          <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M12 2.4v2.6M12 19v2.6M2.4 12h2.6M19 12h2.6M5.2 5.2l1.9 1.9M16.9 16.9l1.9 1.9M18.8 5.2l-1.9 1.9M7.1 16.9l-1.9 1.9" />
+          </g>
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="h-[17px] w-[17px]" aria-hidden="true">
+          <path d="M20 14.2A8.4 8.4 0 1 1 9.8 4a6.9 6.9 0 0 0 10.2 10.2z" fill="currentColor" />
+        </svg>
+      )}
+    </button>
+  )
+}
+
+// Form field and label classes, shared by the sign-in card and the signed-in
+// pages so form controls never drift apart.
+export const FIELD =
+  'w-full rounded-lg border border-neutral-300 bg-white px-3.5 py-2.5 text-[15px] ' +
+  'outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 ' +
+  'dark:border-neutral-700 dark:bg-neutral-950'
+
+export const FIELD_LABEL =
+  'block text-[11px] font-semibold uppercase tracking-[0.07em] text-neutral-500 dark:text-neutral-400'
+
 export function Kicker({ children }) {
   return (
     <p className="text-xs font-semibold uppercase tracking-[0.13em] text-indigo-600 dark:text-indigo-400">

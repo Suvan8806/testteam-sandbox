@@ -64,6 +64,12 @@ export default function Nav({ onSelectTab, dark, onToggleTheme }) {
             )}
           </button>
           <a
+            href="#/login"
+            className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+          >
+            Sign in
+          </a>
+          <a
             href="#cta"
             className="hidden rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-500 lg:inline-block"
           >
