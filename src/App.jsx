@@ -44,7 +44,7 @@ function useTheme() {
     } catch {
       /* private mode — the class is still applied */
     }
-  }, [dark])
+  }, [])
 
   return [dark, () => setDark((d) => !d)]
 }
