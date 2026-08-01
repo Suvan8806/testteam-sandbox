@@ -74,8 +74,7 @@ export default function DashboardPage({ session, onSignOut, dark, onToggleTheme 
     setStatus('Downloaded testteam-projects.csv')
   }
 
-  return
-  (
+  return (
     <div className="min-h-screen font-sans">
       <header className="sticky top-0 z-50 border-b border-neutral-900/10 bg-white/75 backdrop-blur-md backdrop-saturate-150 dark:border-white/10 dark:bg-neutral-950/70">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
